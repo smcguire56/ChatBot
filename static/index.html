@@ -14,9 +14,9 @@
             height: 100px;
             background: red;
             position: relative;
-            -webkit-animation: myfirst 5s;
+            -webkit-animation: myfirst 50s;
             /* Chrome, Safari, Opera */
-            animation: myfirst 5s;
+            animation: myfirst 50s;
             animation-iteration-count: infinite;
 
         }
@@ -85,13 +85,16 @@
 
 
     <div class="container">
-        <h1>Chat Bot Bob</h1>
         <div class="form-group">
+        <h2>Chat Bot Bob</h2>
+
             <textarea class="form-control" rows="12" id="myTextArea" disabled>
         </textarea>
             <input type="text" id="userInput" onkeydown="search(this)">
             <button type="button" class="btn btn-primary btn-md" onclick="addtxt()">Chat</button>
             <button type="button" class="btn btn-primary btn-md" onclick="clearText()">Reset</button>
+        <h1>Chat Bot Bob</h1>
+
         </div>
     </div>
 
