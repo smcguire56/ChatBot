@@ -27,9 +27,12 @@ func ElizaResponse(text string) string{
 	"Why do you say that?",
 	"What do you mean?",
 	"Does that make you happy or sad?",
-	"Could you tell me more about your question?"}
+	"Bob thinks you can think about this",
+	"Bob likes the way you think",
+	"Bob wants to know more about this"}
 
     r_father, _ := regexp.Compile("father")
+    r_hi, _ := regexp.Compile("((^|, )(hi|hello|hey))+$")
 	r_i_am, _ := regexp.Compile(`(?i)i(?:'|\sa)?m (.*)`)
 	r_name, _ := regexp.Compile(`(my)? name is (.*)`)
 
@@ -37,6 +40,9 @@ func ElizaResponse(text string) string{
 		return "Why don’t you tell me more about your father?"
 	}
 
+	if r_hi.MatchString(text) {
+		return "Hello there"
+	}
 	if r_i_am.MatchString(text)  {
 		return r_i_am.ReplaceAllString(text, "How do you know you are $1?")
 	}
