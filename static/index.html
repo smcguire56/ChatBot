@@ -14,11 +14,9 @@
     <div class="container">
         <h1>Chat Bot Bob</h1>
         <div class="form-group">
-        <textarea class="form-control" rows="5" id="myTextArea">
-            >>Bob: Hello Sean.
-            >>Sean: Hello?
+        <textarea class="form-control" rows="12" id="myTextArea" disabled>
         </textarea>
-        <input type="text" id="userInput">
+        <input type="text" id="userInput" onkeydown="search(this)">
         <button type="button" class="btn btn-primary btn-md" onclick="addtxt()">Chat</button>    
         <button type="button" class="btn btn-primary btn-md" onclick="clearText()">Reset</button>    
         </div>
@@ -31,18 +29,37 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
   
     <script type="text/javascript">
+    clearText();
 
-        function addtxt() {
-            var myTextArea = document.getElementById("myTextArea").value;
-            var myText = document.getElementById("userInput").value;
-            console.log(myText);
-            document.getElementById("myTextArea").value += "    >>You: "+ myText +"\n";
+    function addtxt() {
+        var xhttp = new XMLHttpRequest();
 
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("myTextArea").value += "You: "+ xhttp.responseText +"\n";
+            }
+        };
+
+        xhttp.open("POST", "eliza_requests", true);
+        xhttp.setRequestHeader("Cache-Control", "no-cache");
+        xhttp.setRequestHeader("sendInput", document.getElementById("userInput").value);
+        xhttp.send();
+
+        $(document).ready(function(){
+            var $textarea = $('#myTextArea');
+            $textarea.scrollTop($textarea[0].scrollHeight);
+        });
+    }
+
+    function clearText(){
+        document.getElementById("myTextArea").value = "";
+    }
+
+    function search(ele) {
+        if(event.key === 'Enter') {
+            addtxt();        
         }
-
-        function clearText(){
-            document.getElementById("myTextArea").value = "";
-        }
+    }
     </script>
 
   </body>
