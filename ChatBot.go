@@ -71,7 +71,7 @@ func elizaRequests(w http.ResponseWriter, r *http.Request) {
 func requestHandler(w http.ResponseWriter, r *http.Request) {
 	getInput := r.Header.Get("sendInput")
 	fmt.Println(getInput)
-	fmt.Fprintf(w, "%v", getInput)
+	//fmt.Fprintf(w, "%v", getInput)
 	fmt.Fprintf(w, "\n%v", eliza.analyse(getInput))
 }
 
@@ -171,7 +171,6 @@ func (me *Eliza) readresponses(path string) {
 
 // This function accepts a user input, and gives a response as Eliza.
 func (me *Eliza) analyse(userinput string) string {
-	fmt.Println(userinput)
 	// Read the substitutions file.
 	eliza.readsubstitutions("data/substitutions.txt")
 	// Read the responses file.

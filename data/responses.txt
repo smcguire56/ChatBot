@@ -21,6 +21,9 @@
 # Eliza will try to match the regular expressions in the order they appear in
 # this file, and stop at the first match. Thus earlier ones have precedence.
 
+# e.g. why are the trees green?
+(?i).*trees.*
+Shall we talk about happy little trees? 
 
 # e.g. I need help.
 (?im)^\s*I need ([^\.!]*)[\.!]*\s*$
