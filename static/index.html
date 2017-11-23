@@ -9,7 +9,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
         crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="http://csshake.surge.sh/csshake.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -56,6 +55,7 @@
         .text-r {
             float: right;
             padding-left: 10px;
+            align-content: center;
         }
 
         .avatar {
@@ -68,7 +68,8 @@
         }
 
         .img-circle {
-            border-radius: 40px;
+            border-radius: 50%;
+            height: 110px;
         }
 
         .macro {
@@ -86,7 +87,7 @@
 
         .msj {
             float: left;
-            background: #99ccff;
+            background: #b3fff0;
         }
 
         .frame {
@@ -137,17 +138,19 @@
             color: #d4d4d4;
         }
 
-        #override .col-sm-6 .col-sm-offset-5 .frame {
-            margin-left: 80px;
-            overflow-y: scroll;
-        }
 
         #override .myContainer {
             background-color: pink;
             margin-left: 80px;
         }
+
         .scrollable{
-            overflow-y:auto
+            height: auto;
+            max-height: 1200%;
+            overflow-x: hidden;
+            overflow-y: scroll;
+            min-width: 135px;
+            margin-top: 0px;
         }
     </style>
 </head>
@@ -175,17 +178,13 @@
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
         crossorigin="anonymous"></script>
 
     <script type="text/javascript">
         var name;
         var me = {};
-        me.avatar = "img/guy.jpg";
+        me.avatar = "img/person.png";
         var you = {};
         you.avatar = "img/bob.jpeg";
 
@@ -206,7 +205,6 @@
             var date = formatAMPM(new Date());
 
             if (who == "me") {
-
                 control = '<li style="width:100%">' +
                     '<div class="msj macro">' +
                     '<div class="avatar"><img class="img-circle" style="width:100%;" src="' + me.avatar +
@@ -233,6 +231,7 @@
             setTimeout(
                 function () {
                     $("ul").append(control);
+                    $("ul").animate({ scrollTop: $("ul")[0].scrollHeight}, 500);
                 }, time);
 
         }
@@ -271,10 +270,12 @@
                 xhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         insertChat("you", xhttp.responseText, 500);
+                        var msg = new SpeechSynthesisUtterance(xhttp.responseText);
+                        msg.pitch = 0.3; //0 to 2
+                        window.speechSynthesis.speak(msg);
                     }
                 };
 
-                console.log("bananas" + xhttp.responseText);
                 xhttp.open("POST", "elizaRequests", true);
                 xhttp.setRequestHeader("Cache-Control", "no-cache");
                 xhttp.setRequestHeader("sendInput", document.getElementById("mytext").value);
@@ -288,6 +289,8 @@
                 addtxt();
             }
         });
+
+
     </script>
 
 </body>

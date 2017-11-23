@@ -70,8 +70,6 @@ func elizaRequests(w http.ResponseWriter, r *http.Request) {
 
 func requestHandler(w http.ResponseWriter, r *http.Request) {
 	getInput := r.Header.Get("sendInput")
-	fmt.Println(getInput)
-	//fmt.Fprintf(w, "%v", getInput)
 	fmt.Fprintf(w, "\n%v", eliza.analyse(getInput))
 }
 

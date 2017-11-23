@@ -22,8 +22,10 @@
 # this file, and stop at the first match. Thus earlier ones have precedence.
 
 # e.g. why are the trees green?
-(?i).*trees.*
+(?i).*tree.*
 Shall we talk about happy little trees? 
+Trees are really nice, do you agree?
+
 
 # e.g. I need help.
 (?im)^\s*I need ([^\.!]*)[\.!]*\s*$
