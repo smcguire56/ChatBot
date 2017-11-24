@@ -29,3 +29,11 @@ or
 ```sh
 localhost:8080
 ```
+
+A web page should appear with a textbox to enter your messages.
+You may now ask Bob any Question you wish.
+There is a toggle button for text to speech on the right of the input box.
+
+#Sources
+> - https://github.com/data-representation/eliza
+> - https://bootsnipp.com/snippets/featured/simple-chat  
