@@ -1,3 +1,12 @@
+/*
+This chat bot is written for GMIT's 3rd year module Data representation & Querying.
+Written by Sean McGuire.
+
+Sources include:
+https://github.com/data-representation/eliza
+https://bootsnipp.com/snippets/featured/simple-chat
+*/
+
 package main
 
 import (
@@ -65,7 +74,6 @@ func elizaRequests(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Fprintf(w, "%s", output)
-
 }
 
 func requestHandler(w http.ResponseWriter, r *http.Request) {

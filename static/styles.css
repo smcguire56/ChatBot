@@ -1,0 +1,142 @@
+body {
+    background: url("img/bg.png");
+}
+
+.myContainer {
+    padding-top: 50px;
+    margin: 0 auto;
+    width: 1100px;
+}
+
+.mytext {
+    border: 0;
+    padding: 15px;
+    padding-left: 320px;
+    background: whitesmoke;
+}
+
+.text {
+    width: 100%;
+}
+
+.text>p:first-of-type {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: auto;
+    line-height: 13px;
+    font-size: 12px;
+}
+
+.text>p:last-of-type {
+    width: 100%;
+    text-align: right;
+    color: #666666;
+    margin-bottom: -7px;
+    margin-top: 60px;
+}
+
+.text-l {
+    float: left;
+    padding-right: 10px;
+}
+
+.text-r {
+    float: right;
+    padding-left: 10px;
+    align-content: center;
+}
+
+.avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    float: left;
+    padding-right: 10px;
+}
+
+.img-circle {
+    border-radius: 50%;
+    height: 110px;
+}
+
+.macro {
+    margin-top: 5px;
+    width: 85%;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+}
+
+.msj-rta {
+    float: right;
+    background: #99ffcc;
+}
+
+.msj {
+    float: left;
+    background: #b3fff0;
+}
+
+.frame {
+    background: #f2f2f2;
+    height: 700px;
+    overflow: hidden;
+    padding: 0;
+    border-radius: 5%;
+}
+
+.frame>div:last-of-type {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    display: flex;
+}
+
+ul {
+    width: 100%;
+    list-style-type: none;
+    padding: 18px;
+    position: absolute;
+    bottom: 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+input:focus {
+    outline: none;
+}
+
+ ::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #d4d4d4;
+}
+
+ ::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #d4d4d4;
+}
+
+ :-ms-input-placeholder {
+    /* IE 10+ */
+    color: #d4d4d4;
+}
+
+ :-moz-placeholder {
+    /* Firefox 18- */
+    color: #d4d4d4;
+}
+
+#override .myContainer {
+    background-color: pink;
+    margin-left: 80px;
+}
+
+.scrollable {
+    height: auto;
+    max-height: 1200%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    min-width: 135px;
+    margin-top: 0px;
+}
