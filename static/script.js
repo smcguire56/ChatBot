@@ -1,9 +1,14 @@
+
+// scripts file for Go chatbot 
+
+// adapted from https://bootsnipp.com/snippets/featured/simple-chat
 var name;
 var me = {};
 me.avatar = "img/person.png";
 var you = {};
 you.avatar = "img/bob.jpeg";
 
+// this method will get the time of message sent 
 function formatAMPM(date) {
     var hours = date.getHours();
     var minutes = date.getMinutes();
@@ -20,6 +25,8 @@ function insertChat(who, text, time = 0) {
     var control = "";
     var date = formatAMPM(new Date());
 
+    // messaging service checks here if the user is bob or you.
+    // it will print the message to the index
     if (who == "me") {
         control = '<li style="width:100%">' +
             '<div class="msj macro">' +
@@ -45,7 +52,7 @@ function insertChat(who, text, time = 0) {
             '<\/li>';
     }
     setTimeout(
-        function () {
+        function () { // add the message here and scroll to the bottom of the messages.
             $("ul").append(control);
             $("ul").animate({
                 scrollTop: $("ul")[0].scrollHeight
@@ -54,10 +61,12 @@ function insertChat(who, text, time = 0) {
 
 }
 
+// clears the chat at the start.
 function resetChat() {
     $("ul").empty();
 }
 
+// when the user click enter key, send whatever text is in the input to the chat bot
 $(".mytext").on("keyup", function (e) {
     if (e.which == 13) {
         var text = $(this).val();
@@ -75,14 +84,16 @@ resetChat();
 var firstMessage = 0;
 insertChat("you", "Hello, What is your name?", 0);
 
+// add the messages in this function
 function addtxt() {
     if (firstMessage == 0) {
         name = document.getElementById("mytext").value;
+        // first message asking for user name and assigning it to them for the entire chat session.
         insertChat("you", "Hello " + name + ", What do you want to talk about?", 500);
-
         firstMessage++;
     } else // normal messages
     {
+        // 
         var xhttp = new XMLHttpRequest();
 
         xhttp.onreadystatechange = function () {
