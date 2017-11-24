@@ -4,10 +4,16 @@
 
 This chat bot is written for GMIT's 3rd year module Data representation & Querying.
 
+Cloning The chatbot:
+
+```sh
+git clone https://github.com/smcguire56/ChatBot
+cd ./ChatBot
+```
+
 Building and Running The chatbot:
 
 ```sh
-cd ./ChatBot
 go build ./ChatBot.go
 .\ChatBot.exe
 ```
