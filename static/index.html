@@ -1,298 +1,303 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>Chat Bot</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>Chat Bot</title>
+	<meta charset="utf-8">
+    <meta name="description" content="Go web Application">
+    <meta name="keywords" content="HTML,CSS,go,eliza,bob">
+    <meta name="author" content="Sean McGuire">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"><!-- Bootstrap CSS -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+	</script>
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js">
+	</script>
+	<style>
+	       body{
+	           background: url("img/bg.png");
+	       }
+	       
+	       .myContainer {
+	           padding-top: 50px;
+	           margin: 0 auto;
+	           width: 1000px;
+	       }
 
-    <style>
-        .myContainer {
-            padding-top: 50px;
-            margin: 0 auto;
-            width: 1000px;
-        }
+	       .mytext {
+	           border: 0;
+	           padding: 15px;
+	           padding-left: 320px;    
+	           background: whitesmoke;
+	       }
 
-        .mytext {
-            border: 0;
-            padding: 15px;
-            padding-left: 100px;
-            background: whitesmoke;
-        }
+	       .text {
+	           width: 100%;
+	       }
 
-        .text {
-            width: 100%;
-        }
+	       .text>p:first-of-type {
+	           width: 100%;
+	           margin-top: 0;
+	           margin-bottom: auto;
+	           line-height: 13px;
+	           font-size: 12px;
+	       }
 
-        .text>p:first-of-type {
-            width: 100%;
-            margin-top: 0;
-            margin-bottom: auto;
-            line-height: 13px;
-            font-size: 12px;
-        }
+	       .text>p:last-of-type {
+	           width: 100%;
+	           text-align: right;
+	           color: #666666;
+	           margin-bottom: -7px;
+	           margin-top: auto;
+	       }
 
-        .text>p:last-of-type {
-            width: 100%;
-            text-align: right;
-            color: silver;
-            margin-bottom: -7px;
-            margin-top: auto;
-        }
+	       .text-l {
+	           float: left;
+	           padding-right: 10px;
+	       }
 
-        .text-l {
-            float: left;
-            padding-right: 10px;
-        }
+	       .text-r {
+	           float: right;
+	           padding-left: 10px;
+	           align-content: center;
+	       }
 
-        .text-r {
-            float: right;
-            padding-left: 10px;
-            align-content: center;
-        }
+	       .avatar {
+	           display: flex;
+	           justify-content: center;
+	           align-items: center;
+	           width: 25%;
+	           float: left;
+	           padding-right: 10px;
+	       }
 
-        .avatar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 25%;
-            float: left;
-            padding-right: 10px;
-        }
+	       .img-circle {
+	           border-radius: 50%;
+	           height: 110px;
+	       }
 
-        .img-circle {
-            border-radius: 50%;
-            height: 110px;
-        }
+	       .macro {
+	           margin-top: 5px;
+	           width: 85%;
+	           border-radius: 5px;
+	           padding: 5px;
+	           display: flex;
+	       }
 
-        .macro {
-            margin-top: 5px;
-            width: 85%;
-            border-radius: 5px;
-            padding: 5px;
-            display: flex;
-        }
+	       .msj-rta {
+	           float: right;
+	           background: #99ffcc;
+	       }
 
-        .msj-rta {
-            float: right;
-            background: #99ffcc;
-        }
+	       .msj {
+	           float: left;
+	           background: #b3fff0;
+	       }
 
-        .msj {
-            float: left;
-            background: #b3fff0;
-        }
+	       .frame {
+	           background: white;
+	           height: 700px;
+	           overflow: hidden;
+	           padding: 0;
+	       }
 
-        .frame {
-            background: white;
-            height: 700px;
-            overflow: hidden;
-            padding: 0;
-        }
+	       .frame>div:last-of-type {
+	           position: absolute;
+	           bottom: 5px;
+	           width: 100%;
+	           display: flex;
+	       }
 
-        .frame>div:last-of-type {
-            position: absolute;
-            bottom: 5px;
-            width: 100%;
-            display: flex;
-        }
+	       ul {
+	           width: 100%;
+	           list-style-type: none;
+	           padding: 18px;
+	           position: absolute;
+	           bottom: 32px;
+	           display: flex;
+	           flex-direction: column;
+	       }
 
-        ul {
-            width: 100%;
-            list-style-type: none;
-            padding: 18px;
-            position: absolute;
-            bottom: 32px;
-            display: flex;
-            flex-direction: column;
-        }
+	       input:focus {
+	           outline: none;
+	       }
 
-        input:focus {
-            outline: none;
-        }
+	        ::-webkit-input-placeholder {
+	           /* Chrome/Opera/Safari */
+	           color: #d4d4d4;
+	       }
 
-         ::-webkit-input-placeholder {
-            /* Chrome/Opera/Safari */
-            color: #d4d4d4;
-        }
+	        ::-moz-placeholder {
+	           /* Firefox 19+ */
+	           color: #d4d4d4;
+	       }
 
-         ::-moz-placeholder {
-            /* Firefox 19+ */
-            color: #d4d4d4;
-        }
+	        :-ms-input-placeholder {
+	           /* IE 10+ */
+	           color: #d4d4d4;
+	       }
 
-         :-ms-input-placeholder {
-            /* IE 10+ */
-            color: #d4d4d4;
-        }
-
-         :-moz-placeholder {
-            /* Firefox 18- */
-            color: #d4d4d4;
-        }
+	        :-moz-placeholder {
+	           /* Firefox 18- */
+	           color: #d4d4d4;
+	       }
 
 
-        #override .myContainer {
-            background-color: pink;
-            margin-left: 80px;
-        }
+	       #override .myContainer {
+	           background-color: pink;
+	           margin-left: 80px;
+	       }
 
-        .scrollable{
-            height: auto;
-            max-height: 1200%;
-            overflow-x: hidden;
-            overflow-y: scroll;
-            min-width: 135px;
-            margin-top: 0px;
-        }
-    </style>
+	       .scrollable {
+	           height: auto;
+	           max-height: 1200%;
+	           overflow-x: hidden;
+	           overflow-y: scroll;
+	           min-width: 135px;
+	           margin-top: 0px;
+	       }
+	</style>
 </head>
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Bob Ross</a>
+			</div>
+		</div>
+	</nav>
+	<div class="myContainer">
+		<div class="col-sm-8 col-sm-offset-3 frame">
+			<div class="container-fluid">
+				<ul class="scrollable"></ul>
+				<div>
+					<div class="text text-r" style="background:rgba(245, 245, 245, 0.33) !important">
+						<input class="mytext" id="mytext" placeholder="Type a message">
+					</div>
+				</div>
+				<div class="checkbox"></div>
+				<h5>Text to Speech.</h5><input data-toggle="toggle" id="textToSpeech" type="checkbox">
+			</div>
+		</div>
+	</div><!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js">
+	</script> 
+	<script type="text/javascript">
+	       var name;
+	       var me = {};
+	       me.avatar = "img/person.png";
+	       var you = {};
+	       you.avatar = "img/bob.jpeg";
 
-<body background="img/bg.png">
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Bob Ross</a>
-    </div>
-  </div>
-</nav>
-    <div class="myContainer">
-        <div class="col-sm-8 col-sm-offset-3 frame">
-            <div class="container-fluid">
-                
-                <ul class="scrollable"></ul>
-                <div>
-                    <div class="text text-r" style="background:rgba(245, 245, 245, 0.33) !important">
-                        <input class="mytext" placeholder="Type a message" id="mytext" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-        crossorigin="anonymous"></script>
+	       function formatAMPM(date) {
+	           var hours = date.getHours();
+	           var minutes = date.getMinutes();
+	           var ampm = hours >= 12 ? 'PM' : 'AM';
+	           hours = hours % 12;
+	           hours = hours ? hours : 12; // the hour '0' should be '12'
+	           minutes = minutes < 10 ? '0' + minutes : minutes;
+	           var strTime = hours + ':' + minutes + ' ' + ampm;
+	           return strTime;
+	       }
 
-    <script type="text/javascript">
-        var name;
-        var me = {};
-        me.avatar = "img/person.png";
-        var you = {};
-        you.avatar = "img/bob.jpeg";
+	       //-- No use time. It is a javaScript effect.
+	       function insertChat(who, text, time = 0) {
+	           var control = "";
+	           var date = formatAMPM(new Date());
 
-        function formatAMPM(date) {
-            var hours = date.getHours();
-            var minutes = date.getMinutes();
-            var ampm = hours >= 12 ? 'PM' : 'AM';
-            hours = hours % 12;
-            hours = hours ? hours : 12; // the hour '0' should be '12'
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            var strTime = hours + ':' + minutes + ' ' + ampm;
-            return strTime;
-        }
+	           if (who == "me") {
+	               control = '<li style="width:100%">' +
+	                   '<div class="msj macro">' +
+	                   '<div class="avatar"><img class="img-circle" style="width:100%;" src="' + me.avatar +
+	                   '" /><\/div>' +
+	                   '<div class="text text-l">' +
+	                   '<p>' + name + '<\/p>' +
+	                   '<p class="text-left">' + text + '<\/p>' +
+	                   '<p><small>' + date + '<\/small><\/p>' +
+	                   '<\/div>' +
+	                   '<\/div>' +
+	                   '<\/li>';
+	           } else {
+	               control = '<li style="width:100%;">' +
+	                   '<div class="msj-rta macro">' +
+	                   '<div class="text text-r">' +
+	                   '<p class="text-right">Bob<\/p>' +
+	                   '<p class="text-right">' + text + '<\/p>' +
+	                   '<p><small>' + date + '<\/small><\/p>' +
+	                   '<\/div>' +
+	                   '<div class="avatar" style="padding:0px 0px 0px 10px !important"><img class="img-circle" style="width:100%;" src="' +
+	                   you.avatar + '" /><\/div>' +
+	                   '<\/li>';
+	           }
+	           setTimeout(
+	               function () {
+	                   $("ul").append(control);
+	                   $("ul").animate({ scrollTop: $("ul")[0].scrollHeight }, 500);
+	               }, time);
 
-        //-- No use time. It is a javaScript effect.
-        function insertChat(who, text, time = 0) {
-            var control = "";
-            var date = formatAMPM(new Date());
+	       }
 
-            if (who == "me") {
-                control = '<li style="width:100%">' +
-                    '<div class="msj macro">' +
-                    '<div class="avatar"><img class="img-circle" style="width:100%;" src="' + me.avatar +
-                    '" /></div>' +
-                    '<div class="text text-l">' +
-                    '<p>' + name + '</p>' +
-                    '<p class="text-left">' + text + '</p>' +
-                    '<p><small>' + date + '</small></p>' +
-                    '</div>' +
-                    '</div>' +
-                    '</li>';
-            } else {
-                control = '<li style="width:100%;">' +
-                    '<div class="msj-rta macro">' +
-                    '<div class="text text-r">' +
-                    '<p class="text-right">Bob</p>' +
-                    '<p class="text-right">' + text + '</p>' +
-                    '<p><small>' + date + '</small></p>' +
-                    '</div>' +
-                    '<div class="avatar" style="padding:0px 0px 0px 10px !important"><img class="img-circle" style="width:100%;" src="' +
-                    you.avatar + '" /></div>' +
-                    '</li>';
-            }
-            setTimeout(
-                function () {
-                    $("ul").append(control);
-                    $("ul").animate({ scrollTop: $("ul")[0].scrollHeight}, 500);
-                }, time);
+	       function resetChat() {
+	           $("ul").empty();
+	       }
 
-        }
+	       $(".mytext").on("keyup", function (e) {
+	           if (e.which == 13) {
+	               var text = $(this).val();
+	               if (text !== "") {
+	                   insertChat("me", text);
+	                   $(this).val('');
+	               }
+	           }
+	       });
 
-        function resetChat() {
-            $("ul").empty();
-        }
+	       //-- Clear Chat
+	       resetChat();
 
-        $(".mytext").on("keyup", function (e) {
-            if (e.which == 13) {
-                var text = $(this).val();
-                if (text !== "") {
-                    insertChat("me", text);
-                    $(this).val('');
-                }
-            }
-        });
+	       //-- Print Messages
+	       var firstMessage = 0;
+	       insertChat("you", "Hello, What is your name?", 0);
 
-        //-- Clear Chat
-        resetChat();
+	       function addtxt() {
+	           if (firstMessage == 0) {
+	               name = document.getElementById("mytext").value;
+	               insertChat("you", "Hello " + name + ", What do you want to talk about?", 500);
 
-        //-- Print Messages
-        var firstMessage = 0;
-        insertChat("you", "Hello, What is your name?", 0);
+	               firstMessage++;
+	           } else // normal messages
+	           {
+	               var xhttp = new XMLHttpRequest();
 
-        function addtxt() {
-            if (firstMessage == 0) {
-                name = document.getElementById("mytext").value;
-                insertChat("you", "Hello " + name + ", What do you want to talk about?", 500);
+	               xhttp.onreadystatechange = function () {
+	                   if (this.readyState == 4 && this.status == 200) {
+	                       insertChat("you", xhttp.responseText, 500);
+	                       if($('#textToSpeech').prop('checked')){
+	                           console.log("checked");
+	                       var msg = new SpeechSynthesisUtterance(xhttp.responseText);
+	                       msg.pitch = 0.3; //0 to 2
+	                       window.speechSynthesis.speak(msg);
+	                       }
+	                   }
+	               };
 
-                firstMessage++;
-            } else // normal messages
-            {
-                var xhttp = new XMLHttpRequest();
+	               xhttp.open("POST", "elizaRequests", true);
+	               xhttp.setRequestHeader("Cache-Control", "no-cache");
+	               xhttp.setRequestHeader("sendInput", document.getElementById("mytext").value);
 
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        insertChat("you", xhttp.responseText, 500);
-                        var msg = new SpeechSynthesisUtterance(xhttp.responseText);
-                        msg.pitch = 0.3; //0 to 2
-                        window.speechSynthesis.speak(msg);
-                    }
-                };
+	               xhttp.send();
+	           }
+	       }
 
-                xhttp.open("POST", "elizaRequests", true);
-                xhttp.setRequestHeader("Cache-Control", "no-cache");
-                xhttp.setRequestHeader("sendInput", document.getElementById("mytext").value);
-
-                xhttp.send();
-            }
-        }
-
-        $(document).keypress(function (e) {
-            if (e.which == 13) {
-                addtxt();
-            }
-        });
-
-
-    </script>
-
+	       $(document).keypress(function (e) {
+	           if (e.which == 13) {
+	               addtxt();
+	           }
+	       });
+	</script>
 </body>
-
 </html>
