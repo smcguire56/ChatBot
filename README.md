@@ -15,7 +15,7 @@ Building and Running The chatbot:
 
 ```sh
 go build ./ChatBot.go
-.\ChatBot.exe
+./ChatBot.exe
 ```
 
 Once the Executable file is running, open up your browser on port 8080:
